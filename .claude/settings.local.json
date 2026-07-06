@@ -29,7 +29,8 @@
       "Bash(curl -s http://localhost:3000/robots.txt)",
       "Bash(curl -s http://localhost:3000/)",
       "Bash(grep -o 'application/ld+json.\\\\{0,300\\\\}')",
-      "Bash(npm uninstall *)"
+      "Bash(npm uninstall *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }
