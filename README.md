@@ -61,7 +61,7 @@ npm run lint    # ESLint
 - `SiteNav` — sticky top nav with active-route indicator
 - `CommandPalette` — ⌘K palette (navigate + quick actions), backed by a tiny pub-sub store
   (`command-palette-store.ts`) so any component can open/close it without prop drilling
-- `GlobalShortcuts` — bare-letter keyboard shortcuts (`H` `P` `R` `E` `W` `C`) that mirror the
+- `GlobalShortcuts` — bare-letter keyboard shortcuts (`H` `P` `R` `E` `W` `A` `C`) that mirror the
   hints shown in the command palette, disabled while typing in an input
 - `LiveDashboard` — a persistent right-hand workspace panel (visible at `2xl` breakpoints and
   up) showing current build, latest GitHub commit (fetched live from the GitHub REST API),
@@ -134,7 +134,7 @@ those conditions.
 ### SEO
 
 - `src/app/sitemap.ts` / `robots.ts` — generated from the same content files as the pages
-- Per-route `metadata` exports with a title template (`%s — AnushkaOS`)
+- Per-route `metadata` exports with a title template (`%s — Anushka Nayak`)
 - `PersonJsonLd` (global) and `SoftwareJsonLd` (per product) structured data
 - `src/app/icon.svg` — brand favicon
 
@@ -151,6 +151,7 @@ src/
 │   ├── research/             # model cards
 │   ├── experience/            # timeline
 │   ├── writing/                # index + [slug] MDX posts
+│   ├── about/                    # off-the-clock / personal page
 │   ├── contact/                 # minimal contact cards
 │   ├── sitemap.ts / robots.ts
 │   └── icon.svg / favicon.ico
