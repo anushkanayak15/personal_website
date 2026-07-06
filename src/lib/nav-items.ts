@@ -1,6 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Boxes,
+  Coffee,
   FlaskConical,
   Home,
   Mail,
@@ -51,6 +52,13 @@ export const NAV_ITEMS: NavItem[] = [
     icon: BookOpen,
     shortcut: "W",
     description: "Essays & notes",
+  },
+  {
+    label: "About",
+    href: "/about",
+    icon: Coffee,
+    shortcut: "A",
+    description: "Off the clock",
   },
   {
     label: "Contact",

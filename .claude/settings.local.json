@@ -40,7 +40,12 @@
       "Bash(env)",
       "Bash(git push *)",
       "Bash(yes)",
-      "Bash(curl -sI https://personalwebsite-three-ebon.vercel.app)"
+      "Bash(curl -sI https://personalwebsite-three-ebon.vercel.app)",
+      "Bash(curl -sI https://anushkanayak.vercel.app)",
+      "Bash(curl -sL -o /dev/null -w \"%{http_code} %{url_effective}\\\\n\" https://anushkanayak.vercel.app)",
+      "Bash(curl -sL -o /dev/null -w \"anushkanayak.vercel.app -> %{http_code} %{url_effective}\\\\n\" https://anushkanayak.vercel.app)",
+      "Bash(curl -sL -o /dev/null -w \"personalwebsite-three-ebon.vercel.app -> %{http_code} %{url_effective}\\\\n\" https://personalwebsite-three-ebon.vercel.app)",
+      "Bash(curl -s https://anushkanayak.vercel.app)"
     ]
   }
 }

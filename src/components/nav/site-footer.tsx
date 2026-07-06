@@ -6,7 +6,7 @@ export function SiteFooter() {
     <footer className="border-t border-border">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <p className="font-mono text-xs text-subtle-foreground">
-          AnushkaOS — built by Anushka Nayak
+          Anushka Nayak
         </p>
         <nav className="flex flex-wrap gap-x-5 gap-y-2">
           {NAV_ITEMS.map((item) => (

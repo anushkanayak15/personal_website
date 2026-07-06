@@ -32,8 +32,8 @@ const description =
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "AnushkaOS — Anushka Nayak",
-    template: "%s — AnushkaOS",
+    default: "Anushka Nayak",
+    template: "%s — Anushka Nayak",
   },
   description,
   keywords: [
@@ -49,13 +49,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "AnushkaOS — Anushka Nayak",
+    title: "Anushka Nayak",
     description,
-    siteName: "AnushkaOS",
+    siteName: "Anushka Nayak",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AnushkaOS — Anushka Nayak",
+    title: "Anushka Nayak",
     description,
   },
 };

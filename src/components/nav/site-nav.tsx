@@ -21,7 +21,7 @@ export function SiteNav() {
           <span className="flex size-6 items-center justify-center rounded-md bg-accent/10 text-accent">
             <span className="size-1.5 rounded-full bg-accent" />
           </span>
-          AnushkaOS
+          Anushka Nayak
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
