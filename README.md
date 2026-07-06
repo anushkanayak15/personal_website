@@ -3,7 +3,7 @@
 Anushka Nayak's personal site — framed as an AI product studio dashboard rather than a
 traditional portfolio. Built with Next.js 16 (App Router), TypeScript, and Tailwind CSS v4.
 
-**Live:** [personalwebsite-three-ebon.vercel.app](https://personalwebsite-three-ebon.vercel.app)
+**Live:** [anushkanayak.vercel.app](https://anushkanayak.vercel.app)
 **Source:** [github.com/anushkanayak15/personal_website](https://github.com/anushkanayak15/personal_website)
 
 ---
