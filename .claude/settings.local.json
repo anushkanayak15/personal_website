@@ -33,7 +33,14 @@
       "Bash(git commit -m ' *)",
       "Bash(curl -s \"https://api.github.com/repos/anushkanayak15/Solara\")",
       "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/Solara/main/README.md\")",
-      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/Solara/master/README.md\")"
+      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/Solara/master/README.md\")",
+      "Bash(gh auth *)",
+      "Bash(npm -v)",
+      "Bash(npx vercel *)",
+      "Bash(env)",
+      "Bash(git push *)",
+      "Bash(yes)",
+      "Bash(curl -sI https://personalwebsite-three-ebon.vercel.app)"
     ]
   }
 }

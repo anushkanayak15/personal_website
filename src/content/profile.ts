@@ -1,4 +1,4 @@
-export const SITE_URL = "https://anushkanayak.dev";
+export const SITE_URL = "https://personalwebsite-three-ebon.vercel.app";
 
 export const PROFILE = {
   name: "Anushka Nayak",

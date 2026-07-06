@@ -3,8 +3,8 @@
 Anushka Nayak's personal site — framed as an AI product studio dashboard rather than a
 traditional portfolio. Built with Next.js 16 (App Router), TypeScript, and Tailwind CSS v4.
 
-**Live:** _deploy and add URL here_
-**Source:** this repository
+**Live:** [personalwebsite-three-ebon.vercel.app](https://personalwebsite-three-ebon.vercel.app)
+**Source:** [github.com/anushkanayak15/personal_website](https://github.com/anushkanayak15/personal_website)
 
 ---
 
@@ -155,7 +155,7 @@ src/
 │   ├── sitemap.ts / robots.ts
 │   └── icon.svg / favicon.ico
 ├── components/
-│   ├── ui/                  # design-system primitives (Card, Badge, Tooltip, ...)
+│   ├── ui/                  # design-system primitives (Card, Badge, KpiStat, ...)
 │   ├── nav/                  # nav, footer, skip link, global shortcuts
 │   ├── command-palette/
 │   ├── dashboard/             # persistent Live Dashboard + GitHub commit hook
@@ -176,15 +176,36 @@ The app is a standard Next.js App Router project with no external services requi
 time (the only runtime network call is a client-side, unauthenticated fetch to the public
 GitHub REST API for the "Latest Commit" widget, which fails gracefully if rate-limited).
 
-**Vercel (recommended):**
+**Currently deployed on Vercel:**
 
-1. Push this repo to GitHub.
+- Production: https://personalwebsite-three-ebon.vercel.app
+- Project dashboard: https://vercel.com/anushkanayak/personal_website
+- Source: https://github.com/anushkanayak15/personal_website
+
+Deployed via the Vercel CLI (`vercel --prod`). The project was created directly from the CLI
+rather than the dashboard's "Import Git Repository" flow, so **auto-deploy-on-push isn't wired
+up yet** — to enable it, open the project on Vercel → Settings → Git → Connect Git Repository
+and select `anushkanayak15/personal_website`. Once connected, every push to `main` deploys
+automatically and PRs get preview URLs.
+
+**Redeploying manually in the meantime:**
+
+```bash
+npx vercel --prod
+```
+
+**Custom domain:** add one under Project Settings → Domains in Vercel, then update `SITE_URL`
+in `src/content/profile.ts` to match (used by the sitemap, robots.txt, and Open
+Graph/structured data) and redeploy.
+
+**Deploying elsewhere / from scratch:**
+
+1. Push this repo to GitHub (already done).
 2. Import it in [Vercel](https://vercel.com/new) — no configuration needed, it auto-detects Next.js.
-3. Update `SITE_URL` in `src/content/profile.ts` to the deployed domain (used by the sitemap,
-   robots.txt, and Open Graph/structured data).
+3. Update `SITE_URL` in `src/content/profile.ts` to the deployed domain.
 4. Deploy.
 
-**Anywhere else:** `npm run build && npm run start` serves the production build on port 3000.
+**Self-hosted:** `npm run build && npm run start` serves the production build on port 3000.
 
 ---
 
