@@ -1,67 +1,31 @@
+import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
-import { SectionLabel } from "@/components/ui/section-label";
-import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
-import { ArchitectureDiagram } from "@/components/research/architecture-diagram";
-import { ResearchEntry, type ResearchNote } from "@/components/research/research-entry";
+import { ModelCard } from "@/components/research/model-card";
+import { MODEL_CARDS } from "@/content/research";
 
-const NOTES: ResearchNote[] = [
-  {
-    title: "Retrieval strategies for long-context agents",
-    date: "2026-05",
-    abstract:
-      "Placeholder — comparing chunking + reranking strategies against long-context stuffing for agent memory.",
-    tags: ["RAG", "LLM"],
-  },
-  {
-    title: "Evaluating hallucination rates across model families",
-    date: "2026-03",
-    abstract:
-      "Placeholder — a small eval harness for measuring factuality regressions across releases.",
-    tags: ["Evals"],
-  },
-  {
-    title: "Latency budgets for real-time inference",
-    date: "2026-01",
-    abstract:
-      "Placeholder — notes on p99 latency tradeoffs when serving small models at the edge.",
-    tags: ["Systems"],
-  },
-  {
-    title: "Feature stores for online personalization",
-    date: "2025-11",
-    abstract:
-      "Placeholder — patterns for keeping online/offline feature parity at low latency.",
-    tags: ["Data"],
-  },
-];
+export const metadata: Metadata = {
+  title: "Research",
+  description:
+    "Applied ML research model cards: fairness-aware speech recognition, biosignal decoding, bias auditing, and healthcare classification.",
+};
 
 export default function ResearchPage() {
   return (
     <PageShell>
       <PageHeader
         eyebrow="Research"
-        title="Experiments & architecture notes"
-        description="Working notes from building AI systems — placeholder entries until final write-ups are ready."
+        title="Model cards"
+        description="Four applied ML research projects, documented the way a model card would: dataset, models, evaluation method, pipeline, and results."
       />
 
-      <Reveal className="mt-10">
-        <SectionLabel>Featured system — placeholder architecture</SectionLabel>
-        <Card className="mt-4 p-4">
-          <ArchitectureDiagram />
-        </Card>
-      </Reveal>
-
-      <div className="mt-14">
-        <SectionLabel>Notes</SectionLabel>
-        <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
-          {NOTES.map((note, i) => (
-            <Reveal key={note.title} delay={i * 0.05}>
-              <ResearchEntry note={note} />
-            </Reveal>
-          ))}
-        </div>
+      <div className="mt-10 space-y-5">
+        {MODEL_CARDS.map((card, i) => (
+          <Reveal key={card.slug} delay={i * 0.05}>
+            <ModelCard card={card} />
+          </Reveal>
+        ))}
       </div>
     </PageShell>
   );

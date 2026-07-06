@@ -1,46 +1,55 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
 import { Card } from "@/components/ui/card";
 import { Reveal } from "@/components/motion/reveal";
-import { ArticleRow, type Article } from "@/components/writing/article-row";
+import { getAllPosts } from "@/lib/writing";
 
-const ARTICLES: Article[] = [
-  {
-    title: "What building an AI product actually looks like",
-    date: "2026-06",
-    readTime: "6 min",
-    excerpt: "Placeholder excerpt about the gap between demos and shipped products.",
-    href: "#",
-  },
-  {
-    title: "Notes on designing calm developer tools",
-    date: "2026-04",
-    readTime: "4 min",
-    excerpt: "Placeholder excerpt about restraint as a design principle.",
-    href: "#",
-  },
-  {
-    title: "A pragmatic take on evals",
-    date: "2026-02",
-    readTime: "8 min",
-    excerpt: "Placeholder excerpt about building lightweight eval harnesses early.",
-    href: "#",
-  },
-];
+export const metadata: Metadata = {
+  title: "Writing",
+  description: "An engineering journal — notes on building GrowthOS, shipping at American Express, and applied ML research.",
+};
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-US", { month: "short", year: "numeric" });
+}
 
 export default function WritingPage() {
+  const posts = getAllPosts();
+
   return (
     <PageShell>
       <PageHeader
         eyebrow="Writing"
-        title="Essays & notes"
-        description="Longer-form thoughts on building AI products and software — placeholder entries until final essays are published."
+        title="Engineering journal"
+        description="Notes on building GrowthOS, shipping production infrastructure at American Express, and applied ML research — written as I ship, not after."
       />
 
       <Reveal className="mt-10">
         <Card className="px-6">
-          {ARTICLES.map((article) => (
-            <ArticleRow key={article.title} article={article} />
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/writing/${post.slug}`}
+              className="group flex flex-col gap-2 border-b border-border py-6 transition-colors first:pt-6 last:border-b-0 hover:bg-white/[0.015] sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+            >
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <h3 className="font-heading text-base font-medium text-foreground">
+                    {post.title}
+                  </h3>
+                  <ArrowUpRight className="size-3.5 text-subtle-foreground opacity-0 transition-all -translate-x-1 translate-y-1 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </div>
+                <p className="mt-1.5 max-w-xl text-sm text-muted-foreground">{post.excerpt}</p>
+              </div>
+              <div className="flex shrink-0 items-center gap-3 font-mono text-xs text-subtle-foreground">
+                <span>{formatDate(post.date)}</span>
+                <span className="size-1 rounded-full bg-border" />
+                <span>{post.readTime}</span>
+              </div>
+            </Link>
           ))}
         </Card>
       </Reveal>

@@ -10,7 +10,26 @@
       "Bash(npx tsc *)",
       "Bash(npx eslint *)",
       "Bash(npm run *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Read(//Users/anushkanayak/Desktop/**)",
+      "Read(//Users/anushkanayak/Downloads/**)",
+      "Bash(echo \"=== recruiter search wider ===\" *)",
+      "Bash(gh api *)",
+      "Bash(curl -s \"https://api.github.com/users/anushkanayak15/repos?per_page=100&sort=pushed\")",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s \"https://api.github.com/repos/anushkanayak15/relevant-priors\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/relevant-priors/main/README.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/relevant-priors/master/README.md\")",
+      "Bash(curl -s \"https://api.github.com/users/anushkanayak15\")",
+      "Bash(cp \"/Users/anushkanayak/Downloads/Anushka_Nayak_UCLA_sw_Resume_2026.pdf\" \"/Users/anushkanayak/Desktop/personal_website/public/resume.pdf\" && ls -la /Users/anushkanayak/Desktop/personal_website/public/)",
+      "Bash(mkdir -p \"/Users/anushkanayak/Desktop/personal_website/src/app/products/[slug]\")",
+      "Bash(mkdir -p \"/Users/anushkanayak/Desktop/personal_website/src/app/writing/[slug]\")",
+      "Bash(curl -sI http://localhost:3000/resume.pdf)",
+      "Bash(curl -s http://localhost:3000/sitemap.xml)",
+      "Bash(curl -s http://localhost:3000/robots.txt)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(grep -o 'application/ld+json.\\\\{0,300\\\\}')",
+      "Bash(npm uninstall *)"
     ]
   }
 }

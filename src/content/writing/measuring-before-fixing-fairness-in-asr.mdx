@@ -1,0 +1,22 @@
+---
+title: "Measuring before fixing: fairness in speech recognition"
+date: "2026-06-02"
+excerpt: "Before you can close a fairness gap in ASR, you have to be able to prove it exists — and that fine-tuning actually narrows it."
+tags: ["Research", "Fairness", "Speech"]
+---
+
+Fine-tuning Whisper with LoRA on FLEURS was the easy part of this research project. Building an evaluation framework that could actually tell us whether the fine-tuned model was *fairer*, not just more accurate on average, was the part that took real thought.
+
+## Aggregate WER hides the thing you're trying to measure
+
+It's tempting to report a single Word Error Rate number and call it a day. But averaging across language families as different as Germanic and Bantu can hide exactly the disparities a fairness project is supposed to surface. A model can improve on average while a specific language family — or a specific gender within it — gets no better, or worse.
+
+We evaluated gender-stratified WER within each of eight language families instead of only in aggregate. That slicing is what actually let us see where LoRA fine-tuning helped and where it didn't.
+
+## Parameter-efficient fine-tuning made the experiment possible at all
+
+Full fine-tuning across that many languages wasn't realistic on the compute we had. LoRA — training small low-rank adapters on top of frozen base weights — made it possible to iterate across language families without the cost of retraining the whole model each time. The methodology only existed because the fine-tuning approach was cheap enough to run many times.
+
+## A baseline you trust is worth more than a clever metric
+
+The core of the experimental design was boring on purpose: strict baseline-vs-fine-tuned comparison, same evaluation set, same slicing. That's what let us attribute any WER or fairness-gap change to the fine-tuning itself, instead of to noise or dataset shift. Fairness evaluation doesn't need to be exotic. It needs to be honest about what it's actually comparing.

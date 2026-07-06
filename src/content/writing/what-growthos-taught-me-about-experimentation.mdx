@@ -1,0 +1,24 @@
+---
+title: "What building GrowthOS taught me about experimentation"
+date: "2026-07-04"
+excerpt: "Explainability turned out to matter more than raw conversion — notes from building a closed-loop landing-page experimentation lab."
+tags: ["GrowthOS", "Experimentation", "Product Engineering"]
+---
+
+When I started building GrowthOS, I assumed the hard part would be the simulation itself — getting synthetic visitors to behave in a way that felt believable. It wasn't. The hard part was deciding what the system should be allowed to claim.
+
+## Conversion alone lies
+
+Early versions of the fitness function just ranked candidates by conversion rate. That felt correct until I looked at what was actually winning: pages that converted a narrow slice of visitors extremely well while bleeding everyone else. A single number can't tell you whether a page is winning broadly or winning by accident on a lucky cohort mix.
+
+That's why the final Growth Fitness Score blends conversion with engagement, scroll depth, time on page, and inverse bounce rate — each normalized within the run. Conversion is still weighted heaviest (40%), because it's the actual business outcome, but the other signals explain *how* a page got there.
+
+## Explainability is the actual product
+
+The most important design decision in GrowthOS wasn't the simulation model — it was refusing to let the evolution step be a black box. Every section in the Gen 2 candidate carries a labeled parent variant and the reason it was selected. That constraint made the system slower to build and more useful to trust. A tool that says "this page is better" is a lot less valuable than one that says "this page is better because the hero section from Variant C had a 34% higher hero-gate pass rate, weighted by downstream conversion."
+
+## Statistical honesty is a feature
+
+At 10,000 simulated visitors per candidate, a naive conversion rate is noisier than it looks. Wilson confidence intervals made the uncertainty visible instead of hidden — which matters even in a synthetic demo, because the whole point of GrowthOS is to model how a real experimentation pipeline *should* behave.
+
+I labeled every synthetic number as synthetic, everywhere, including inside the product itself. It would have been easy to let the demo imply real user data. It doesn't, and that restraint is part of what makes it credible.

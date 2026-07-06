@@ -5,8 +5,12 @@ import { SectionLabel } from "@/components/ui/section-label";
 import { CommandCard } from "@/components/ui/command-card";
 import { KpiStat } from "@/components/ui/kpi-stat";
 import { Card } from "@/components/ui/card";
+import { Tooltip } from "@/components/ui/tooltip";
 import { Reveal } from "@/components/motion/reveal";
 import { ActivityChart } from "@/components/home/activity-chart";
+import { SkillsExplorer } from "@/components/home/skills-explorer";
+import { HOME_METRICS } from "@/content/metrics";
+import { PROFILE } from "@/content/profile";
 
 export default function HomePage() {
   return (
@@ -23,10 +27,10 @@ export default function HomePage() {
             </div>
             <StatusPill label="Engineer" value="Online" tone="positive" />
             <StatusPill label="Building" value="GrowthOS" tone="active" />
-            <StatusPill label="Research" value="Running" tone="active" />
+            <StatusPill label="Researching" value="Fairness-Aware ASR" tone="active" />
             <StatusPill
               label="Status"
-              value="Open to SWE / AI roles"
+              value={PROFILE.status}
               tone="positive"
               className="ml-auto"
             />
@@ -42,8 +46,7 @@ export default function HomePage() {
             and data-driven software.
           </h1>
           <p className="mt-5 max-w-xl text-balance text-base text-muted-foreground sm:text-lg">
-            A control center for the products, research, and systems I&apos;m
-            building — not a resume.
+            {PROFILE.tagline}
           </p>
         </Reveal>
 
@@ -61,11 +64,11 @@ export default function HomePage() {
               href="/research"
               icon={<FlaskConical strokeWidth={1.75} />}
               title="Research"
-              description="Experiments & architecture notes"
+              description="Model cards & experiments"
               shortcut="R"
             />
             <CommandCard
-              href="/resume.pdf"
+              href={PROFILE.resumeUrl}
               icon={<FileText strokeWidth={1.75} />}
               title="Resume"
               description="Download the one-pager"
@@ -81,33 +84,56 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        {/* KPI + chart dashboard section */}
+        {/* KPI dashboard section */}
         <Reveal delay={0.15} className="mt-20">
-          <SectionLabel>Live metrics</SectionLabel>
-          <div className="mt-5 grid grid-cols-1 gap-4 lg:grid-cols-3">
-            <Card className="grid grid-cols-2 gap-6 p-6 sm:grid-cols-4 lg:col-span-3 lg:grid-cols-4">
-              <KpiStat label="Products shipped" value={7} suffix="" trend="+2 this yr" />
-              <KpiStat label="Research notes" value={23} trend="+4 this mo" />
-              <KpiStat label="Uptime" value={99.9} decimals={1} suffix="%" />
-              <KpiStat label="Avg. response" value={2} suffix="h" />
-            </Card>
-          </div>
+          <SectionLabel>By the numbers</SectionLabel>
+          <Card className="mt-5 grid grid-cols-2 gap-6 p-6 sm:grid-cols-3 lg:grid-cols-6">
+            {HOME_METRICS.map((metric) => (
+              <Tooltip key={metric.label} content={metric.tooltip} className="block">
+                <KpiStat
+                  label={metric.label}
+                  value={metric.value}
+                  suffix={metric.suffix}
+                  trend={metric.trend}
+                  className="cursor-default"
+                />
+              </Tooltip>
+            ))}
+          </Card>
         </Reveal>
 
-        <Reveal delay={0.2} className="mt-4">
+        {/* Skills explorer */}
+        <Reveal delay={0.18} className="mt-6">
+          <Card className="p-6">
+            <h3 className="font-heading text-sm font-medium text-foreground">Systems & stack</h3>
+            <p className="text-sm text-muted-foreground">
+              Hover a skill to see which real projects used it.
+            </p>
+            <div className="mt-5">
+              <SkillsExplorer />
+            </div>
+          </Card>
+        </Reveal>
+
+        <Reveal delay={0.2} className="mt-6">
           <Card className="p-6">
             <div className="flex items-center justify-between">
               <div>
                 <h3 className="font-heading text-sm font-medium text-foreground">
-                  Build activity
+                  GitHub push activity
                 </h3>
                 <p className="text-sm text-muted-foreground">
-                  Commits & experiments over the last 12 weeks
+                  Public repo pushes by month
                 </p>
               </div>
-              <span className="font-mono text-[0.7rem] uppercase tracking-wider text-subtle-foreground">
-                Placeholder data
-              </span>
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[0.7rem] uppercase tracking-wider text-subtle-foreground hover:text-accent"
+              >
+                @{PROFILE.githubHandle}
+              </a>
             </div>
             <ActivityChart />
           </Card>

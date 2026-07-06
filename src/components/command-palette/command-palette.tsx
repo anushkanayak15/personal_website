@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Mail, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { NAV_ITEMS } from "@/lib/nav-items";
+import { PROFILE } from "@/content/profile";
 import {
   closeCommandPalette,
   subscribeCommandPalette,
@@ -17,22 +18,22 @@ const ACTIONS = [
   {
     label: "Email me",
     icon: Mail,
-    href: "mailto:hello@anushkanayak.dev",
+    href: `mailto:${PROFILE.email}`,
   },
   {
     label: "Open GitHub",
     icon: GithubIcon,
-    href: "https://github.com/anushkanayak",
+    href: PROFILE.github,
   },
   {
     label: "Open LinkedIn",
     icon: LinkedinIcon,
-    href: "https://linkedin.com/in/anushkanayak",
+    href: PROFILE.linkedin,
   },
   {
     label: "Download resume",
     icon: FileText,
-    href: "/resume.pdf",
+    href: PROFILE.resumeUrl,
   },
 ];
 

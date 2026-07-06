@@ -1,37 +1,22 @@
 "use client";
 
-import {
-  Area,
-  AreaChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-} from "recharts";
-
-const DATA = Array.from({ length: 12 }, (_, i) => ({
-  week: `W${i + 1}`,
-  value: Math.round(20 + Math.sin(i / 1.6) * 14 + i * 2.2 + Math.random() * 8),
-}));
+import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from "recharts";
+import { GITHUB_MONTHLY_ACTIVITY } from "@/content/github-activity";
 
 export function ActivityChart() {
   return (
     <div className="mt-6 h-48 w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={DATA} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
-          <defs>
-            <linearGradient id="activityFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3ecf8e" stopOpacity={0.35} />
-              <stop offset="100%" stopColor="#3ecf8e" stopOpacity={0} />
-            </linearGradient>
-          </defs>
+        <BarChart data={GITHUB_MONTHLY_ACTIVITY} margin={{ top: 8, right: 0, left: 0, bottom: 0 }}>
           <XAxis
-            dataKey="week"
+            dataKey="month"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#71717a", fontSize: 11, fontFamily: "var(--font-jetbrains-mono)" }}
+            interval={1}
+            tick={{ fill: "#71717a", fontSize: 10, fontFamily: "var(--font-jetbrains-mono)" }}
           />
           <Tooltip
-            cursor={{ stroke: "#27272a", strokeWidth: 1 }}
+            cursor={{ fill: "rgba(255,255,255,0.04)" }}
             contentStyle={{
               background: "#111113",
               border: "1px solid rgba(255,255,255,0.08)",
@@ -40,16 +25,11 @@ export function ActivityChart() {
               fontFamily: "var(--font-jetbrains-mono)",
               color: "#fff",
             }}
+            formatter={(value) => [`${value} ${value === 1 ? "repo" : "repos"} pushed`, ""]}
             labelStyle={{ color: "#a1a1aa" }}
           />
-          <Area
-            type="monotone"
-            dataKey="value"
-            stroke="#3ecf8e"
-            strokeWidth={2}
-            fill="url(#activityFill)"
-          />
-        </AreaChart>
+          <Bar dataKey="repos" fill="#3ecf8e" radius={[3, 3, 0, 0]} maxBarSize={28} />
+        </BarChart>
       </ResponsiveContainer>
     </div>
   );

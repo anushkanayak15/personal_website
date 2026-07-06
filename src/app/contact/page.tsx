@@ -1,12 +1,16 @@
+import type { Metadata } from "next";
 import { Mail, FileText } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { PageShell } from "@/components/layout/page-shell";
 import { PageHeader } from "@/components/layout/page-header";
-import { SectionLabel } from "@/components/ui/section-label";
-import { Card } from "@/components/ui/card";
 import { CommandCard } from "@/components/ui/command-card";
 import { Reveal } from "@/components/motion/reveal";
-import { ContactForm } from "@/components/contact/contact-form";
+import { PROFILE } from "@/content/profile";
+
+export const metadata: Metadata = {
+  title: "Contact",
+  description: "Get in touch with Anushka Nayak — email, GitHub, LinkedIn, or resume.",
+};
 
 export default function ContactPage() {
   return (
@@ -14,46 +18,37 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Open a channel"
-        description="The fastest way to reach me, or send a message directly."
+        description="The fastest way to reach me."
       />
 
       <Reveal className="mt-10">
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <CommandCard
-            href="mailto:hello@anushkanayak.dev"
+            href={`mailto:${PROFILE.email}`}
             icon={<Mail strokeWidth={1.75} />}
             title="Email"
-            description="hello@anushkanayak.dev"
+            description={PROFILE.email}
           />
           <CommandCard
-            href="https://github.com/anushkanayak"
+            href={PROFILE.github}
             icon={<GithubIcon />}
             title="GitHub"
-            description="@anushkanayak"
+            description={`@${PROFILE.githubHandle}`}
           />
           <CommandCard
-            href="https://linkedin.com/in/anushkanayak"
+            href={PROFILE.linkedin}
             icon={<LinkedinIcon />}
             title="LinkedIn"
-            description="in/anushkanayak"
+            description={`in/${PROFILE.githubHandle}`}
           />
           <CommandCard
-            href="/resume.pdf"
+            href={PROFILE.resumeUrl}
             icon={<FileText strokeWidth={1.75} />}
             title="Resume"
             description="Download PDF"
           />
         </div>
       </Reveal>
-
-      <div className="mt-14">
-        <SectionLabel>Direct message</SectionLabel>
-        <Reveal delay={0.05}>
-          <Card className="mt-5 p-6 sm:p-8">
-            <ContactForm />
-          </Card>
-        </Reveal>
-      </div>
     </PageShell>
   );
 }

@@ -1,0 +1,24 @@
+---
+title: "API-first lessons from American Express"
+date: "2026-06-10"
+excerpt: "Shipping a production DNS platform inside a large enterprise taught me that a clear contract unblocks more teams than a clever implementation."
+tags: ["American Express", "Infrastructure", "API Design"]
+---
+
+I spent my internship on American Express's Distributed Infrastructure and Data Services team replacing a legacy, ticket-driven DNS provisioning platform with a production Flask + PostgreSQL API. The engineering was straightforward. The sequencing was the actual lesson.
+
+## Write the contract before the implementation
+
+Before writing the endpoints, I documented all 11 of them in Swagger. That felt like overhead at the time — I wanted to start building. In hindsight, it was the single highest-leverage thing I did that summer. Teams that needed to integrate with the new API could start building against the spec while the implementation was still in progress, instead of waiting on me or reverse-engineering undocumented behavior.
+
+In a large organization, the bottleneck is rarely "can this be built." It's "how many teams have to wait on each other before it ships."
+
+## Model state, don't track it in tickets
+
+The legacy system effectively stored DNS record state in ticket history — if you wanted to know the current state of a record, you had to read through a chain of manual requests. Moving that into PostgreSQL as an explicit system of record, with real lifecycle transitions, is what actually made automation possible. You can't automate a workflow whose state lives in prose.
+
+## Scope automation around the worst friction, not the whole surface
+
+We shipped three production features, not ten. Each one targeted the manual ticket types that were creating the most delay for requesting teams. It was tempting to try to automate the entire legacy surface area at once; scoping tightly around the highest-friction cases meant we shipped something real instead of something ambitious and half-finished.
+
+The result: a 70% reduction in provisioning time and 100+ automated requests a day, with a contract other teams could build on.
