@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { MouseEvent, ReactNode } from "react";
@@ -15,6 +15,8 @@ interface CommandCardProps {
   className?: string;
 }
 
+const SPRING = { stiffness: 300, damping: 22, mass: 0.4 };
+
 export function CommandCard({
   href,
   icon,
@@ -23,21 +25,40 @@ export function CommandCard({
   shortcut,
   className,
 }: CommandCardProps) {
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springRotateX = useSpring(rotateX, SPRING);
+  const springRotateY = useSpring(rotateY, SPRING);
+
   const handleMouseMove = (e: MouseEvent<HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--x", `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty("--y", `${e.clientY - rect.top}px`);
+    const px = e.clientX - rect.left;
+    const py = e.clientY - rect.top;
+    e.currentTarget.style.setProperty("--x", `${px}px`);
+    e.currentTarget.style.setProperty("--y", `${py}px`);
+
+    const normalizedX = px / rect.width - 0.5;
+    const normalizedY = py / rect.height - 0.5;
+    rotateY.set(normalizedX * 10);
+    rotateX.set(-normalizedY * 10);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
   };
 
   return (
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 400, damping: 28 }}
+      style={{ rotateX: springRotateX, rotateY: springRotateY, transformPerspective: 800 }}
       className={cn("group relative", className)}
     >
       <Link
         href={href}
         onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         className="relative flex h-full flex-col justify-between gap-6 overflow-hidden rounded-xl border border-border bg-card p-5 transition-colors duration-200 hover:border-border-hover hover:bg-card-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
       >
         <div

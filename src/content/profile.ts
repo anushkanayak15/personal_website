@@ -17,5 +17,5 @@ export const PROFILE = {
     degree: "B.S. Computer Science",
     graduation: "Jun 2026",
   },
-  status: "Open to SWE / AI roles",
+  status: "Open to SWE / AI / Product Research roles",
 } as const;

@@ -30,7 +30,10 @@
       "Bash(curl -s http://localhost:3000/)",
       "Bash(grep -o 'application/ld+json.\\\\{0,300\\\\}')",
       "Bash(npm uninstall *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(curl -s \"https://api.github.com/repos/anushkanayak15/Solara\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/Solara/main/README.md\")",
+      "Bash(curl -s \"https://raw.githubusercontent.com/anushkanayak15/Solara/master/README.md\")"
     ]
   }
 }

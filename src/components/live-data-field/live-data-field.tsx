@@ -53,6 +53,7 @@ function getServerIsEnabled() {
 
 export function LiveDataField() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const enabled = useSyncExternalStore(
     subscribeToCapabilities,
     getIsEnabled,
@@ -65,8 +66,11 @@ export function LiveDataField() {
     if (!canvasEl) return;
     const ctxEl = canvasEl.getContext("2d");
     if (!ctxEl) return;
+    const wrapperEl = wrapperRef.current;
+    if (!wrapperEl) return;
     const canvas: HTMLCanvasElement = canvasEl;
     const ctx: CanvasRenderingContext2D = ctxEl;
+    const wrapper: HTMLDivElement = wrapperEl;
 
     let width = 0;
     let height = 0;
@@ -147,6 +151,12 @@ export function LiveDataField() {
 
       mouse.x += (targetMouse.x - mouse.x) * 0.12;
       mouse.y += (targetMouse.y - mouse.y) * 0.12;
+
+      const scrollY = window.scrollY;
+      const fadeRange = height || 800;
+      const scrollFade = 1 - Math.min(scrollY / fadeRange, 0.72);
+      wrapper.style.transform = `translate3d(0, ${-scrollY * 0.18}px, 0)`;
+      wrapper.style.opacity = String(scrollFade);
 
       ctx.clearRect(0, 0, width, height);
 
@@ -237,11 +247,15 @@ export function LiveDataField() {
       window.removeEventListener("pointermove", onPointerMove);
       window.removeEventListener("pointerleave", onPointerLeave);
       document.removeEventListener("visibilitychange", onVisibilityChange);
+      wrapper.style.transform = "";
+      wrapper.style.opacity = "";
     };
   }, [enabled]);
 
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-grid mask-fade-bottom">
+    <div
+      ref={wrapperRef}
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-grid mask-fade-bottom will-change-transform">
       {enabled && <canvas ref={canvasRef} className="absolute inset-0" />}
     </div>
   );
