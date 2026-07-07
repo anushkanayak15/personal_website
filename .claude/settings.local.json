@@ -45,7 +45,10 @@
       "Bash(curl -sL -o /dev/null -w \"%{http_code} %{url_effective}\\\\n\" https://anushkanayak.vercel.app)",
       "Bash(curl -sL -o /dev/null -w \"anushkanayak.vercel.app -> %{http_code} %{url_effective}\\\\n\" https://anushkanayak.vercel.app)",
       "Bash(curl -sL -o /dev/null -w \"personalwebsite-three-ebon.vercel.app -> %{http_code} %{url_effective}\\\\n\" https://personalwebsite-three-ebon.vercel.app)",
-      "Bash(curl -s https://anushkanayak.vercel.app)"
+      "Bash(curl -s https://anushkanayak.vercel.app)",
+      "Bash(curl -s https://anushkanayak.vercel.app/about)",
+      "Bash(sips -g pixelWidth -g pixelHeight -g hasAlpha public/brand/logo.webp)",
+      "Bash(ffmpeg -y -i public/brand/logo.webp -vf cropdetect=24:2:0 -frames:v 3 -f null -)"
     ]
   }
 }

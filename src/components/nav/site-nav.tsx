@@ -7,6 +7,7 @@ import { Command } from "lucide-react";
 import { NAV_ITEMS } from "@/lib/nav-items";
 import { cn } from "@/lib/utils";
 import { openCommandPalette } from "@/components/command-palette/command-palette-store";
+import { LogoMark } from "@/components/brand/logo-mark";
 
 export function SiteNav() {
   const pathname = usePathname();
@@ -16,11 +17,9 @@ export function SiteNav() {
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Link
           href="/"
-          className="flex items-center gap-2 font-heading text-sm font-medium tracking-tight text-foreground"
+          className="flex items-center gap-2.5 font-heading text-sm font-medium tracking-tight text-foreground"
         >
-          <span className="flex size-6 items-center justify-center rounded-md bg-accent/10 text-accent">
-            <span className="size-1.5 rounded-full bg-accent" />
-          </span>
+          <LogoMark size={30} />
           Anushka Nayak
         </Link>
 
